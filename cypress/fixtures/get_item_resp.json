@@ -1,0 +1,8 @@
+{
+  "item": {
+    "id": 999,
+    "name": "test item",
+    "price": "9.99",
+    "create_time": 0
+  }
+}
