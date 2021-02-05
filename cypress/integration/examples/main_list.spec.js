@@ -28,6 +28,28 @@ describe("Mainlist", () => {
       });
   });
 
+  // MOCKING MAINLIST API RESPONSE
+  it("mocking mainlist and check row elements", () => {
+    const fixture_path = "items_list_resp.json";
+    cy.intercept("GET", "**/items?sort=1**", { fixture: fixture_path });
+    cy.visit("https://noelpoo.github.io/Flask-app-fe/");
+    cy.get(".movements").children();
+    cy.document()
+      .then((doc) => {
+        const container = doc.querySelectorAll(".movements__row");
+        console.log("movements", container);
+        return container;
+      })
+      .then((container) => {
+        container.forEach((row) => {
+          cy.get(row).children().should("have.length", 3);
+          cy.get(row).children(".movements__type").should("exist");
+          cy.get(row).children(".movements__time").should("exist");
+          cy.get(row).children(".movements__value").should("exist");
+        });
+      });
+  });
+
   it("check current date", () => {
     cy.get(".date").should("have.text", getCurrentDate());
   });
@@ -40,6 +62,7 @@ describe("Mainlist", () => {
       .should("be.oneOf", [200, 400]);
   });
 
+  // API FUNCTIONAL TESTING
   it("sort API returns correct list", () => {
     cy.intercept("GET", "**/items?sort=1").as("get_list");
     cy.visit("https://noelpoo.github.io/Flask-app-fe/");

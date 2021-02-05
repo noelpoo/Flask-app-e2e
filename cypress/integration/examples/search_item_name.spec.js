@@ -47,7 +47,6 @@ describe("Search item name", () => {
     cy.get(".search__item__id").should("have.text", "item id: 999");
     cy.get(".search__item__name").should("have.text", "name: test item");
     cy.get(".search__item__price").should("have.text", "price: 9.99");
-    cy.get(".close-modal").click();
   });
 
   const generateRandomString = function (length) {

@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "test item 1",
+      "price": 1.99,
+      "create_time": 0
+    },
+    {
+      "id": 2,
+      "name": "test item 2",
+      "price": 2.99,
+      "create_time": 100
+    }
+  ]
+}
