@@ -5,6 +5,7 @@ describe("Search item name", () => {
     cy.visit("https://noelpoo.github.io/Flask-app-fe/");
   });
 
+  // CHECKING "search item" BOX HAS CORRECT ELEMENTS
   it("check 'search item' box elements", () => {
     cy.get(".operation.operation--search").should("exist");
     cy.get(".operation.operation--search")
@@ -16,6 +17,7 @@ describe("Search item name", () => {
     cy.get(".form.form--search").children(".form__btn.form__btn--search");
   });
 
+  // CHECKING "search item" INPUT FIELD
   it("search item string input", () => {
     const randomString = generateRandomString(5);
     cy.get(".form__input.form__input--item--search").type(randomString);
@@ -25,6 +27,7 @@ describe("Search item name", () => {
     );
   });
 
+  // CHECKING "search item" SENDS OUT CORRECT REQUEST
   it("search item request", () => {
     const randomString = generateRandomString(5);
     cy.get(".form__input.form__input--item--search").type(randomString);
@@ -36,6 +39,7 @@ describe("Search item name", () => {
     });
   });
 
+  // CHECKING SEARCH RESULT MODAL WINDOW
   it("search result modal window", () => {
     const fixture_path = "get_item_resp.json";
     const randomString = generateRandomString(5);

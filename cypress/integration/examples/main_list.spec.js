@@ -5,11 +5,13 @@ describe("Mainlist", () => {
     cy.visit("https://noelpoo.github.io/Flask-app-fe/");
   });
 
+  // CHECKING NAV BAR
   it("check nav bar", () => {
     cy.get("nav").children(".welcome").should("exist");
     cy.get("nav").children(".login").should("exist");
   });
 
+  // CHECKING EACH ROW ELEMENT
   it("check row elements", () => {
     cy.get(".movements").children();
     cy.document()
@@ -50,10 +52,12 @@ describe("Mainlist", () => {
       });
   });
 
+  //CHECKING CURRENT DATE
   it("check current date", () => {
     cy.get(".date").should("have.text", getCurrentDate());
   });
 
+  // CHECKING IF SORT BUTTONS CALL CORRECT API
   it("sort button calls correct API", () => {
     cy.intercept("GET", "**/items?sort=**").as("sorted");
     cy.get(".btn--sort").click();
@@ -62,7 +66,7 @@ describe("Mainlist", () => {
       .should("be.oneOf", [200, 400]);
   });
 
-  // API FUNCTIONAL TESTING
+  // CHECKING THAT /items?sort API RETURNS CORRECT NO. OF ITEMS
   it("sort API returns correct list", () => {
     cy.intercept("GET", "**/items?sort=1").as("get_list");
     cy.visit("https://noelpoo.github.io/Flask-app-fe/");
